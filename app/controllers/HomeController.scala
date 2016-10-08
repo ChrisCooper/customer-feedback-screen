@@ -54,7 +54,7 @@ class HomeController @Inject()(@Named("stocksActor") stocksActor: ActorRef,
       }
 
     case rejected =>
-      logger.error(s"Request ${rejected} failed same origin check")
+      logger.error(s"Request $rejected failed same origin check")
       Future.successful {
         Left(Forbidden("forbidden"))
       }
