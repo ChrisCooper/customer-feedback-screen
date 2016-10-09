@@ -13,5 +13,7 @@ trait SurveysFormat {
 /**
   * Individual survey information
   */
-case class BannerSurvey(bannerName: String, monkeyId: String)
+case class BannerSurvey(bannerName: String, monkeyId: String, structure: FeedbackStructure)
+
+case class FeedbackStructure(feedbackId: String, npsId: String, npsZeroId: String, npsTenId: String)
 

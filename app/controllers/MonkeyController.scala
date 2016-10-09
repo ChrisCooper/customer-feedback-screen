@@ -33,8 +33,14 @@ class MonkeyController @Inject()(ec: ExecutionContext, dataCollector: SurveyData
   /**
     * Gets deeper metadata for one survey
     */
-  def surveyMetadata(bannerId: String) = Action.async { implicit request =>
+  def metadata(bannerId: String) = Action.async { implicit request =>
     dataCollector.surveyMetadata(bannerId).map(surveyData =>
+      Ok(Json.prettyPrint(surveyData)).as(ContentTypes.JSON)
+    )
+  }
+
+  def respondents(bannerId: String) = Action.async { implicit request =>
+    dataCollector.respondents(bannerId).map(surveyData =>
       Ok(Json.prettyPrint(surveyData)).as(ContentTypes.JSON)
     )
   }

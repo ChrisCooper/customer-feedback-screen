@@ -12,7 +12,6 @@ import scala.concurrent.Future
 
 @Singleton
 class SurveyDataCollector @Inject()(mc: MonkeyClient) extends Controller {
-
   /**
     * Get all the surveys
     *
@@ -46,12 +45,30 @@ class SurveyDataCollector @Inject()(mc: MonkeyClient) extends Controller {
       "survey_id" -> banner.monkeyId
     )
 
-    val surveysResponse: Future[WSResponse] = surveysRequest.post(requestData)
+    val surveysResponse = surveysRequest.post(requestData)
 
     surveysResponse.map(response =>
       response.json
     )
   }
+
+  def respondents(bannerId: String) = {
+    val banner = Surveys.SURVEYS(bannerId)
+
+    val surveysRequest = mc.request("/surveys/get_respondent_list")
+
+    val requestData = Json.obj(
+      "survey_id" -> banner.monkeyId,
+      "fields" -> Json.arr(
+        "date_modified"
+      )
+    )
+
+    surveysRequest.post(requestData).map(response =>
+      response.json
+    )
+  }
+
 
 }
 

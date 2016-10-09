@@ -12,7 +12,8 @@
         <ul>
             @for((bannerId, banner) <- bannerSurveys) {
                 <li>
-                    <a href="@routes.MonkeyController.surveyMetadata(bannerId)">@banner.bannerName</a>
+                    <a href="@routes.MonkeyController.metadata(bannerId)">@banner.bannerName</a>
+                    (<a href="@routes.MonkeyController.respondents(bannerId)">respondents</a>)
                 </li>
             }
         </ul>
