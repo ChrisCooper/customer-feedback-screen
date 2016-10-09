@@ -1,0 +1,20 @@
+@import dataformat.BannerSurvey
+@(bannerSurveys: Map[String, BannerSurvey])
+
+
+<html>
+    <head>
+    </head>
+    <body>
+        <p>
+            <a href="@routes.MonkeyController.allSurveys()">See general survey metadata</a>
+        </p>
+        <ul>
+            @for((bannerId, banner) <- bannerSurveys) {
+                <li>
+                    <a href="@routes.MonkeyController.surveyMetadata(bannerId)">@banner.bannerName</a>
+                </li>
+            }
+        </ul>
+    </body>
+</html>

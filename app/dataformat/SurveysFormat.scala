@@ -4,15 +4,14 @@ package dataformat
   * A stupid interface for you to implement to supply sensitive account data. Implementation stored in a git submodule.
   */
 trait SurveysFormat {
-  def API_KEY: String
-  def USER_ACCESS_TOKEN: String
+  val API_KEY: String
+  val USER_ACCESS_TOKEN: String
 
-  def SURVEYS: Map[String, SurveyDetailsFormat]
+  val SURVEYS: Map[String, BannerSurvey]
 }
 
 /**
   * Individual survey information
   */
-trait SurveyDetailsFormat {
-  def surveyId: String
-}
+case class BannerSurvey(bannerName: String, monkeyId: String)
+
