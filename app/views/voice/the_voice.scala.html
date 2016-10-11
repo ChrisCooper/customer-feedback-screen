@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+@import play.mvc.Http.Context.Implicit.request
+
+<html>
+    <head>
+        <title>The Voice</title>
+
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main2.css")">
+
+        <script type='text/javascript' src='@routes.Assets.at("lib/jquery/jquery.min.js")'></script>
+        <script type='text/javascript' src='@routes.Assets.at("javascripts/main.js")'></script>
+
+    </head>
+    <body class="stars_5 nps-10">
+        <header>
+            <div class="cc-logo condensed">CLICK&amp;COLLECT</div>
+        </header>
+        <main>
+            <div class="location condensed">
+                <div class="icon-marker"></div>
+                <p id="location">Loblaws - Fake Street, Somewhere, ON</p>
+            </div>
+            <div class="feedback-wrapper">
+                <p class="customer-name condensed">
+                    <span id="Order">Order #123000045600078</span>
+                    <span id="datetime"></span>
+                </p>
+                <div id="stars" class="stars">
+                    <div class="star star-full"></div>
+                    <div class="star star-full"></div>
+                    <div class="star star-full"></div>
+                    <div class="star star-full"></div>
+                    <div class="star star-full"></div>
+                    <div class="star star-full"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+
+                <p id="feedback" class="feedback-content condensed">
+                    This is where the user's feedback will go. Sometimes the feedback is good; sometimes it's bad. Often there is something mentioned that we can improve.
+                </p>
+            </div>
+            <div class="nps-wrapper">
+                <p id="title" class="feedback-title condensed">NPS:</p>
+                <span class="feedback-number condensed" id="NPS">10</span>
+            </div>
+        </main>
+    </body>
+</html>

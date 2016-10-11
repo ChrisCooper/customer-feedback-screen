@@ -1,0 +1,189 @@
+@font-face {
+  font-family: 'Univers LT Pro';
+  font-weight: 900;
+  src: url(/assets/fonts/2B816F_1_0.woff2) format('woff2'), url(/assets/fonts/2B816F_1_0.woff) format('woff')
+}
+
+@font-face {
+  font-family: 'Univers LT Pro';
+  font-weight: 500;
+  src: url(/assets/fonts/2B816F_2_0.woff2) format('woff2'), url(/assets/fonts/2B816F_2_0.woff) format('woff')
+}
+
+@font-face {
+  font-family: 'Univers LT Pro';
+  font-weight: 300;
+  src: url(/assets/fonts/2B816F_0_0.woff2) format('woff2'), url(/assets/fonts/2B816F_0_0.woff) format('woff')
+}
+
+@font-face {
+  font-family: 'Univers LT Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/assets/fonts/2B816F_3_0.woff2) format('woff2'), url(/assets/fonts/2B816F_3_0.woff) format('woff')
+}
+
+@font-face {
+  font-family: 'Univers LT Pro';
+  font-weight: 700;
+  src: url(/assets/fonts/2B816F_4_0.woff2) format('woff2'), url(/assets/fonts/2B816F_4_0.woff) format('woff')
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #194b9f;
+  text-transform: uppercase;
+  font-family: 'Univers LT Pro', Helvetica, Arial, sans-serif;
+}
+
+body.nps-0,
+body.nps-1,
+body.nps-2,
+body.nps-3,
+body.nps-4,
+body.nps-5,
+body.nps-6 {
+  background-color: #e2231a;
+}
+
+body.nps-7,
+body.nps-8 {
+  background-color: #e8cB40;
+}
+
+body.nps-9,
+body.nps-10 {
+  background-color: #46AD00;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #000;
+}
+
+main {
+  position: relative;
+}
+
+.condensed {
+  letter-spacing: -0.05em;
+}
+
+.cc-logo {
+  font-size: 40px;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+.location {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.icon-marker {
+  width: 30px;
+  height: 25px;
+  background: url(http://image005.flaticon.com/28/png/128/34/34468.png) 50% 50% no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: -36px;
+  top: 4.3px;
+}
+
+.feedback-wrapper {
+  padding-top: 100px;
+  max-width: 65%;
+  left: 150px;
+  height: 500px;
+  position: relative;
+  float: left;
+}
+
+.customer-name {
+  font-weight: 400;
+  font-size: 36px;
+  padding: 30px 0 5px;
+}
+
+.feedback-title {
+  font-weight: 400;
+  font-size: 30px;
+  color: #fff;
+  position: relative;
+  top: 30px;
+  left: 15px;
+}
+
+.feedback-number {
+  font-weight: 700;
+  font-size: 300px;
+  color: #ffe256;
+  line-height: 1;
+}
+
+.nps-7 .feedback-number,
+.nps-8 .feedback-number {
+  color: #ffffff;
+}
+
+.stars {
+  padding: 0px 0 30px 0;
+}
+
+.stars:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.star {
+  width: 32px;
+  height: 27px;
+  margin: 3px;
+  float: left;
+  background: url('/assets/images/star.png') 0 0 no-repeat;
+  background-size: 32px 27px;
+  opacity: .3;
+}
+
+.star-full {
+  opacity: 1;
+}
+
+.feedback-content {
+  font-size: 37px;
+  color: #fff;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.feedback-content:before {
+  content: '"';
+}
+
+.feedback-content:after {
+  content: '"';
+}
+
+.feedback-content .keyword {
+  font-weight: 700;
+  letter-spacing: 0em;
+}
+
+.nps-wrapper {
+  float: right;
+  padding-top: 150px;
+  position: relative;
+  width: 20%;
+  margin-right: 15px;
+}

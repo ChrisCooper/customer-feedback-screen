@@ -44,4 +44,10 @@ class MonkeyController @Inject()(ec: ExecutionContext, dataCollector: SurveyData
       Ok(Json.prettyPrint(surveyData)).as(ContentTypes.JSON)
     )
   }
+
+  /*def answers(bannerId: String) = Action.async { implicit request =>
+    dataCollector.answers(bannerId).map(strigs =>
+      Ok(strings.mkstring(" "))
+    )
+  }*/
 }

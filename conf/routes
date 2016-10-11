@@ -2,12 +2,16 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                           controllers.HomeController.index
-GET     /ws                         controllers.HomeController.ws
-GET     /sentiment/:symbol          controllers.StockSentiment.get(symbol)
+GET     /                                   controllers.VoiceController.index
+GET     /openwebsocket              controllers.VoiceController.openWebSocket
+
+GET     /stocks                           controllers.HomeController.index
+GET     /stocks/ws                         controllers.HomeController.ws
+GET     /stocks/sentiment/:symbol          controllers.StockSentiment.get(symbol)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
 
 GET     /monkey/all_surveys                     controllers.MonkeyController.allSurveys
 GET     /monkey/surveys/:bannerId               controllers.MonkeyController.metadata(bannerId)

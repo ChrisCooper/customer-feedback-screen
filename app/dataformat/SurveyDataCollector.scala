@@ -39,13 +39,13 @@ class SurveyDataCollector @Inject()(mc: MonkeyClient) extends Controller {
   def surveyMetadata(bannerId: String) = {
     val banner = Surveys.SURVEYS(bannerId)
 
-    val surveysRequest = mc.request("/surveys/get_survey_details")
+    val request = mc.request("/surveys/get_survey_details")
 
     val requestData = Json.obj(
       "survey_id" -> banner.monkeyId
     )
 
-    val surveysResponse = surveysRequest.post(requestData)
+    val surveysResponse = request.post(requestData)
 
     surveysResponse.map(response =>
       response.json
@@ -55,7 +55,7 @@ class SurveyDataCollector @Inject()(mc: MonkeyClient) extends Controller {
   def respondents(bannerId: String) = {
     val banner = Surveys.SURVEYS(bannerId)
 
-    val surveysRequest = mc.request("/surveys/get_respondent_list")
+    val request = mc.request("/surveys/get_respondent_list")
 
     val requestData = Json.obj(
       "survey_id" -> banner.monkeyId,
@@ -64,11 +64,55 @@ class SurveyDataCollector @Inject()(mc: MonkeyClient) extends Controller {
       )
     )
 
-    surveysRequest.post(requestData).map(response =>
+    request.post(requestData).map(response =>
       response.json
     )
   }
 
+  case class Respondent(respondentId: String, dateModified: String)
+
+  def answers(bannerId: String) = {
+
+    val banner = Surveys.SURVEYS(bannerId)
+
+    /*val futureResponse: Future[WSResponse] = for {
+      responseOne <- ws.url(urlOne).get()
+      responseTwo <- ws.url(responseOne.body).get()
+      responseThree <- ws.url(responseTwo.body).get()
+    } yield responseThree
+
+    futureResponse.recover {
+      case e: Exception =>
+        val exceptionData = Map("error" -> Seq(e.getMessage))
+        ws.url(exceptionUrl).post(exceptionData)
+    }*/
+
+
+
+    val resps = respondents(bannerId).map(js => {
+      val rs = (js \ "data" \ "respondents").as[Seq[Map[String, String]]]
+
+      rs.map(resp =>
+        Respondent(resp("respondent_id"), resp("date_modified"))
+      )
+    })
+
+    val request = mc.request("/surveys/get_responses")
+
+    val f: Future[Future[JsValue]] = resps.map(resps => {
+
+      val requestData = Json.obj(
+        "survey_id" -> banner.monkeyId,
+        "respondent_ids" -> Json.arr(
+          resps.map(r => r.respondentId)
+        )
+      )
+
+      request.post(requestData).map(response =>
+        response.json
+      )
+    })
+  }
 
 }
 
