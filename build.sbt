@@ -15,7 +15,11 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-testkit" % "2.4.4" % Test,
   "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.4" % Test,
   "org.webjars" % "bootstrap" % "3.3.6",
-  "org.webjars" % "flot" % "0.8.3"
+  "org.webjars" % "flot" % "0.8.3",
+
+  // This is a way of making javascript libraries available in the /assets/lib path
+  "org.webjars" % "jquery" % "3.1.1"
 )
 
 routesGenerator := InjectedRoutesGenerator
+
