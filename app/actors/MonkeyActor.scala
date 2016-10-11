@@ -8,7 +8,9 @@ import akka.event.LoggingReceive
   */
 class MonkeyActor extends Actor with ActorLogging {
 
-  def receive = LoggingReceive {
+
+  def receive = ???
+  /*def receive = LoggingReceive {
     case watchStock@WatchStock(symbol) =>
       // get or create the StockActor for the symbol and forward this message
       context.child(symbol).getOrElse {
@@ -20,6 +22,6 @@ class MonkeyActor extends Actor with ActorLogging {
     case unwatchStock@UnwatchStock(None) =>
       // if no symbol is specified, forward to everyone
       context.children.foreach(_.forward(unwatchStock))
-  }
+  }*/
 
 }
