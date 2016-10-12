@@ -36,7 +36,6 @@ window.onload = function() {
 
     console.log("Connecting...");
     socket = new WebSocket("ws://127.0.0.1:9000/openwebsocket");
-    //socket.binaryType = "blob";
 
     socket.onopen = function() {
         console.log("Websocket open!");
@@ -52,7 +51,6 @@ window.onload = function() {
         console.log("New feedback message received: " + feedback_json);
         feedback = jQuery.parseJSON(feedback_json);
         console.log(feedback);
-
 
         // Fade out and in
         $('main').fadeOut(
@@ -74,29 +72,29 @@ window.onload = function() {
 function swapFeedback() {
     //feedback
     $('main').fadeIn(4000);
-    $('#Order').text("Order #" + feedback.Order);
-    $('#feedback').html(feedback.Feedback);
+    $('#Order').text("Order #" + feedback.orderNumber);
+    $('#feedback').html(feedback.feedbackText);
 
-    $('#NPS').text(feedback.NPScore);
+    $('#NPS').text(feedback.npsScore);
 
-    if ('our_timestamp' in feedback) {
+    if ('timestampUtc' in feedback) {
         var dt = new Date();
-        dt.setTime(feedback.our_timestamp);
+        dt.setTime(feedback.timestampUtc);
         $('#datetime').text(' - ' + timeSince(dt) + ' ago');
     } else {
         $('#datetime').text('');
     }
 
     $('.star').remove();
-    for (i = 0; i < feedback.NPScore; i++) {
+    for (i = 0; i < feedback.npsScore; i++) {
         $("#stars").append('<div class="star star-full"></div>');
     }
-    for (i = 0; i < (10 - feedback.NPScore); i++) {
+    for (i = 0; i < (10 - feedback.npsScore); i++) {
         $("#stars").append('<div class="star"></div>');
     }
 
     $("body").removeClass();
-    $("body").addClass("nps-" + feedback.NPScore);
+    $("body").addClass("nps-" + feedback.npsScore);
 
-    $('#location').text(feedback.Store.name);
+    $('#location').text(feedback.store.name);
 }

@@ -71,22 +71,18 @@ class SurveyDataCollector @Inject()(mc: MonkeyClient) extends Controller {
 
   case class Respondent(respondentId: String, dateModified: String)
 
+
+  def getAnswers(respondentsJson: JsValue): Future[JsValue] = ???
+
+
   def answers(bannerId: String) = {
 
     val banner = Surveys.SURVEYS(bannerId)
 
-    /*val futureResponse: Future[WSResponse] = for {
-      responseOne <- ws.url(urlOne).get()
-      responseTwo <- ws.url(responseOne.body).get()
-      responseThree <- ws.url(responseTwo.body).get()
-    } yield responseThree
-
-    futureResponse.recover {
-      case e: Exception =>
-        val exceptionData = Map("error" -> Seq(e.getMessage))
-        ws.url(exceptionUrl).post(exceptionData)
-    }*/
-
+    val x: Future[JsValue] = for {
+      respondentsJson <- respondents(bannerId)
+      answersJson <- getAnswers(respondentsJson)
+    } yield answersJson
 
 
     val resps = respondents(bannerId).map(js => {
@@ -113,6 +109,8 @@ class SurveyDataCollector @Inject()(mc: MonkeyClient) extends Controller {
       )
     })
   }
+
+
 
 }
 
