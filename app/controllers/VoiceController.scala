@@ -4,7 +4,7 @@ import javax.inject.{Inject, Singleton}
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
-import play.api.libs.json.JsValue
+import play.api.libs.json.{JsValue, Json}
 import play.api.libs.streams.ActorFlow
 import play.api.mvc._
 
@@ -30,8 +30,8 @@ object MyWebSocketActor {
 
 class MyWebSocketActor(outActorRef: ActorRef) extends Actor {
   def receive = {
-    case msg: String =>
-      outActorRef ! ("I received your message: " + msg)
+    case msg: JsValue =>
+      outActorRef ! Json.obj("sentMessage" -> msg)
   }
 
   /**
@@ -40,5 +40,7 @@ class MyWebSocketActor(outActorRef: ActorRef) extends Actor {
   override def postStop() = {
     println("Websocket actor stopped")
   }
+
+  println("Made ws actor")
 }
 

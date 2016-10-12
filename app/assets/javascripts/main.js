@@ -35,12 +35,16 @@ function timeSince(date) {
 window.onload = function() {
 
     console.log("Connecting...");
-    socket = new WebSocket("ws://127.0.0.1:9000/ws");
-    socket.binaryType = "arraybuffer";
+    socket = new WebSocket("ws://127.0.0.1:9000/openwebsocket");
+    //socket.binaryType = "blob";
 
     socket.onopen = function() {
-        console.log("Connected!");
+        console.log("Websocket open!");
         isopen = true;
+
+        var message = "{\"message\": \"hey\"}";
+        console.log("Sending: " + message);
+        socket.send(message);
     };
 
     socket.onmessage = function(e) {
@@ -60,10 +64,11 @@ window.onload = function() {
     };
 
     socket.onclose = function(e) {
-        console.log("Connection closed.");
+        console.log("Connection closed:");
+        console.log(e);
         socket = null;
         isopen = false;
-    }
+    };
 };
 
 function swapFeedback() {
