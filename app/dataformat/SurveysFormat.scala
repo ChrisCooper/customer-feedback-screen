@@ -1,5 +1,7 @@
 package dataformat
 
+import org.joda.time.DateTime
+
 /**
   * A stupid interface for you to implement to supply sensitive account data. Implementation stored in a git submodule.
   */
@@ -16,4 +18,6 @@ trait SurveysFormat {
 case class BannerSurvey(bannerName: String, monkeyId: String, structure: FeedbackStructure)
 
 case class FeedbackStructure(feedbackId: String, npsId: String, npsZeroId: String, npsTenId: String)
+
+case class Respondent(respondentId: String, dateTime: DateTime)
 

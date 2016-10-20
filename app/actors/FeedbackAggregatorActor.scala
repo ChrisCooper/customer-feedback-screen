@@ -56,7 +56,7 @@ class FeedbackAggregatorActor @Inject()(@Named("monkeyActor") monkeyActor: Actor
       listeners = listeners - sender
 
     // A new feedback has been collected
-    case feedback@Feedback(orderNumber, _, _, _, _) =>
+    case feedback@Feedback(orderNumber, _, _, _, dateTime) =>
       queue.enqueue(feedback)
 
       // Throw out the oldest feedback if the queue is full
@@ -64,12 +64,14 @@ class FeedbackAggregatorActor @Inject()(@Named("monkeyActor") monkeyActor: Actor
         queue.dequeue()
       }
 
+      lastFeedbackTime = dateTime
+
     case GiveNextFeedback() if queue.isEmpty =>
-      print("No feedback in queue to give")
+      println("No feedback in queue to give")
 
     // Time to update clients
     case GiveNextFeedback() =>
-      print("Giving next feedback")
+      println("Giving next feedback")
 
       val feedback = queue.dequeue()
       queue.enqueue(feedback)
